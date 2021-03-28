@@ -1,0 +1,16 @@
+<!--index.wxml-->
+<swiper class="swiper_box" bindchange="swiperchange"indicator-dots="true"indicaror-active-color="#fff">
+  <swiper-item wx:for="{{banners}}" item-id="" wx:key="id">
+    <image mode="aspectFill" src="{{item.picUrl}}"></image>
+
+
+  </swiper-item>
+
+</swiper>
+
+<view class="btn">
+  <van-button type="primary">进入</van-button>
+
+</view>
+
+

@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en" >
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        *{
+            margin: 0;
+            padding: 0;
+        }
+        .box{ 
+            width: 100vw;
+            height: 100vh;
+            font-size: 0;
+        }
+        .item{
+            display:inline-block;
+            height: 100%;
+            /* width: 10vw; */
+            width: 1rem;/*rem相对单位  */
+            background-color: chartreuse;
+        }
+        .item:nth-child(2n){
+            background-color:cyan;
+        }
+    </style>
+</head>
+<script>
+    let setRootFontSize=()=>{
+        document
+        .documentElement
+        .style
+        .fontSize=window.innerWidth/10+"px";//变化的  屏幕宽度的1/10
+    }
+    setRootFontSize();
+    window.onresize=function(){
+        setRootFontSize();
+    }
+
+</script>
+
+<body>
+    <div class="box">
+        <div class="item"></div>
+        <div class="item"></div>
+        <div class="item"></div>
+        <div class="item"></div>
+        <div class="item"></div>
+        <div class="item"></div>
+        <div class="item"></div>
+        <div class="item"></div>
+        <div class="item"></div>
+        <div class="item"></div>
+    </div>
+</body>
+</html>

@@ -1,0 +1,24 @@
+<!--index.wxml-->
+<!-- 手机的产品数据已经到了前端
+<view wx:for="{{phone_list}}" wx:for-item="phone" bindtap="viewItem">
+  <text>{{phone.title}}</text>
+  
+  <van-card thumb="{{phone.image}}" title="{{phone.title}}" price="{{phone.price}}"  data-id="{{phone._id}}">
+
+  </van-card>
+</view> -->
+
+<!-- block 在小程序有指令 -->
+<block wx:for="{{userList}}" wx:key="index">
+  <text>{{index}}</text>
+</block>
+
+<view class='floatBtn'>
+  <button 
+    size="mini" 
+    bindtap='navigatTo'  
+    type="primary"
+    open-type="getUserInfo"
+    bindgetuserinfo="getUserInfo"
+    >+</button>
+</view>

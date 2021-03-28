@@ -1,0 +1,53 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>div+css+js实现九宫格点击随机变色</title>
+    <script>
+        var inner = document.getElementsByClassName("inner");
+        function ChangeColor(num){
+            var a = parseInt(Math.random()*10);
+            var b = parseInt(Math.random()*10);
+            var c = parseInt(Math.random()*10);
+            var d = parseInt(Math.random()*10);
+            var e = parseInt(Math.random()*10);
+            var f = parseInt(Math.random()*10);
+            var g = "#"+a+b+c+d+e+f;
+            inner[num].style.backgroundColor=g;
+//            log.innerHTML=g;
+//            inner[num].style.backgroundColor="rgb("+parseInt(Math.random()*255)+","+parseInt
+//            (Math.random()*255)+","+parseInt(Math.random()*255)+")";
+        }
+    </script>
+    <style>
+        #outer{
+            width:306px;
+        }
+        #outer div{
+            height:100px;
+            width:100px;
+            background-color: #ff00ff;
+            float: left;
+            line-height:100px;
+            text-align: center;
+            margin-left:2px;
+            margin-top:2px;
+        }
+    </style>
+</head>
+<body>
+<div id="outer">
+    <div class="inner" οnclick="ChangeColor('0')">1</div>
+    <div class="inner" οnclick="ChangeColor('1')">2</div>
+    <div class="inner" οnclick="ChangeColor('2')">3</div>
+    <div class="inner" οnclick="ChangeColor('3')">4</div>
+    <div class="inner" οnclick="ChangeColor('4')">5</div>
+    <div class="inner" οnclick="ChangeColor('5')">6</div>
+    <div class="inner" οnclick="ChangeColor('6')">7</div>
+    <div class="inner" οnclick="ChangeColor('7')">8</div>
+    <div class="inner" οnclick="ChangeColor('8')">9</div>
+</div>
+<div id="log"></div>
+</body>
+</html>

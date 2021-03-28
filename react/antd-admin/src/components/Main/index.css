@@ -1,0 +1,10 @@
+.body{
+    margin-left: 3px;
+    margin-top: 10px;
+    display: flex;
+    background-color: #ffee9f;
+}
+.body .main {
+    margin-left: 50px;
+    display: flex;
+}

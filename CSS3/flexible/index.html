@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<style>
+    *{
+        margin:0;
+        padding: 0;
+    }
+    html,body{
+        /* height:100%; */
+    }
+    .box{
+        display:flex;
+        font-size: 0;
+        /* width:100%; */
+        width: 100vw;/*vw  相对视窗  */
+        /* height: 100%; */
+        height: 100vh;
+        background-color:green;
+        position: absolute;  /*绝对定位*/
+        /* top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0; */
+
+    }
+    .col{
+        flex: 1;
+        font-size: 40px;
+        width:10%;
+        height: 100%;
+        background-color:yellow;
+        /* float: left; */
+        display: inline-block;/*行内块级元素*/
+        
+    }
+    .col:nth-child(2n){
+        background-color:chartreuse;
+    }
+</style>
+<body>
+    <div class="box">
+        <div class="col">王总一家亲</div>
+        <div class="col">钻石王老五</div>
+        <div class="col"></div>
+        <div class="col"></div>
+        <div class="col"></div>
+        <div class="col"></div>
+        <div class="col"></div>
+        <div class="col"></div>
+        <div class="col"></div>
+        <div class="col"></div>
+    </div>
+</body>
+</html>

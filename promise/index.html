@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        // Promise  许诺
+       const p1 = new Promise((resolve,reject)=>{
+            //放费时的操作  发送请求和响应
+            //异步操作
+            //封装一个http 请求响应  要花时间
+            //fetch 负责获取
+            fetch("http://localhost:8080/user.json") //去一个土味情话网站，返回一条土味情话 请求响应 http本质？
+            //花时间操作 promise 
+                .then(data=>data.json())
+                .then(data =>{
+                    // console.log(data);
+                    // 实现 promise 
+                    resolve(data);
+                })
+            // setTimeout(() => {
+                // console.log(1);
+            // }, 3000);
+            console.log(3);
+            resolve(1);
+
+        })
+        //定时器 异步  I/O  内存中——>硬盘
+        // setTimeout(() => {
+        //     console.log(1);
+        // }, 5000);
+        
+        p1.then((data)=>{
+            console.log(data);
+        })
+        console.log(2);
+        //如何先输出2，再输出1
+    </script>
+</body>
+</html>

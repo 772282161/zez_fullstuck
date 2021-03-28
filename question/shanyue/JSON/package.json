@@ -1,0 +1,16 @@
+{
+  "name": "JSON",
+  "version": "1.0.0",
+  "description": "1. HTTP协议\r     TCP/IP HTTP是上层\r     Web Server  RestFul",
+  "main": "index.js",
+  "scripts": {
+    "dev":"json-server --watch ./players.json",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "json-server": "^0.16.3"
+  }
+}

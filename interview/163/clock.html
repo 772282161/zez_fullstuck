@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>网易CSS考题 时钟</title>
+    <style>
+        .container{
+            width: 100%;
+        }
+        .line{
+            width: 20px;
+            height: 300px;
+            margin: 50% auto;
+            position: relative;
+            background: red;
+            /* 设置一个基点 动画transform 时不动的 */
+            transform-origin: top center;
+            /* transform rotate: ; */
+            animation: swing 5s infinite linear;
+            /* animation-iteration-count: infinite;
+            animation-timing-function: linear; */
+        }
+        .ball{
+            width: 60px;
+            height: 60px;
+            border-radius: 30px;
+            background-color: blue;
+            bottom: -60px;
+            left: -20px;
+            position: absolute;
+        }
+        @keyframes swing{
+            0%{
+                transform: rotate(45deg);
+            }
+            25%{
+                transform: rotate(0deg);
+            }
+            50%{
+                transform: rotate(-45deg);
+            }
+            75%{
+                transform: rotate(0deg);
+            }
+            100%{
+                transform: rotate(45deg);
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- html结构 -->
+    <div class="container">
+        <div class="line">
+            <div class="ball">
+
+            </div>
+        </div>
+    </div>
+</body>
+</html>

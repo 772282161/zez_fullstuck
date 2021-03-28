@@ -1,0 +1,22 @@
+// .box
+//     color black
+//     display flex
+//     align-items: center
+//     justify-content: center
+//     for  n in (1..9)
+//         &:nth-child({n})//  &表示.box  对上一级的引用
+//             background-color rgba(n*20, n*5, n*9, n*0.1)//0.1 透明度
+
+
+nbgc (num)
+    for i in  1...num
+        &:nth-child({i})
+            border-bottom: 0
+            background-color rgbc(i*20,i*5,i*9,i*0.1)
+
+.box
+    color white
+    display flex
+    align-items: center
+    justify-content: center
+    nbgc(9)

@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        const fn = function(b = 1){
+            //arguments  内置对象  运行时有
+            //not defined     undefined
+            // console.log(arguments.length,b,arguments[0],arguments[1],arguments[2]);
+            console.log(typeof b);
+        }
+        //JS 函数 传参也不严格
+        // fn(1,2,3);
+        fn();
+
+        const fun = (...args) =>{//  ... reset运算符 基于ES6的运算符
+            console.log(args);
+        }
+        fun(1,2,3);
+    </script>
+</body>
+</html>
