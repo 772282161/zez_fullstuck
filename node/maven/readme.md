@@ -30,3 +30,11 @@ CREATE TABLE `post` (
 
 - mysql 先建表 再操作 关系型数据库  SQL
     MongoDB 先操作，再建表  NOSQL  JSON
+
+
+
+- user 业务
+    1.user.router.ts 入口 POST方法 路径 /register
+    2.user.controller.ts 用户名或密码不为空，这是绝对不能存的，会带来数据库的问题，用户端 和数据库之间 的管理
+    3.user.service.ts 存数据
+    3.user.middleware.ts  检测是否有存在的用户名 注册  /POST /refister  checkIsNameExist  next() register

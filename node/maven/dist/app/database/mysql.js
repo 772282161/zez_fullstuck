@@ -10,7 +10,7 @@ exports.connection = mysql2_1.default.createConnection({
     host: app_config_1.MYSQL_HOST,
     port: parseInt(app_config_1.MYSQL_PORT),
     user: app_config_1.MYSQL_USER,
-    password: app_config_1.MYSQL_PASSERORD,
+    password: app_config_1.MYSQL_PASSWORD,
     database: app_config_1.MYSQL_DATABASE
 });
 //# sourceMappingURL=mysql.js.map

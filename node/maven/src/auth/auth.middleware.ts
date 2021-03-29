@@ -1,6 +1,9 @@
-import { NextFunction, request, response } from "express";
+import { Request, Response, NextFunction } from 'express';
+export const authGard = (request:Request, response:Response, next:NextFunction) => {
+  console.log('验证用户身份');
+  // if (request.user.id) {
 
-export const authGard=(request,response,next:NextFunction)=>{
-    console.log('到auth一游');
-    next(new Error('UNAUTHORIZED'))
+  // }
+  // 
+  next(new Error('UNAUTHORIZED'))
 }

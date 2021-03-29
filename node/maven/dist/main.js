@@ -7,13 +7,13 @@ const app_1 = __importDefault(require("./app"));
 const mysql_1 = require("./app/database/mysql");
 const app_config_1 = require("./app/app.config");
 app_1.default.listen(app_config_1.APP_PORT, () => {
-    console.log('王总嫖娼不给钱');
+    console.log('服务已启动');
 });
 mysql_1.connection.connect(error => {
     if (error) {
-        console.log('连接数据库失败', error.message);
+        console.log('链接数据库失败：', error.message);
         return;
     }
-    console.log('成功连接数据库服务');
+    console.log('成功连接数据服务');
 });
 //# sourceMappingURL=main.js.map
