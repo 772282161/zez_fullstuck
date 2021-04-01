@@ -1,0 +1,12 @@
+import { ACTION_SET_FROM,ACTION_SET_TO } from './constants'
+
+
+export const setFrom = (from)=>({
+    type:ACTION_SET_FROM,
+    payload:from
+})
+// from =>to
+export const setTo = (to)=>({
+    type:ACTION_SET_TO,
+    payload:to
+})
