@@ -10,3 +10,7 @@
 3. 我的 /my     reducer userReducer
 
 小米有品， 借鉴小米页面
+
+商品列表 
+商品详情页 
+路由  id -> action -> store -> 详情页去显示

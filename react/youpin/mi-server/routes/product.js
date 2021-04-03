@@ -11,7 +11,7 @@ router.get('/info',(req,res)=>{
     console.log(req.query.id)
     const info= req.$PRODUCT_DATE.filter(item=>item.id == req.query.id)
     res.send({
-        data:info,
+        data:info[0],
         code:0
     })
 })
