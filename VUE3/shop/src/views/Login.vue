@@ -37,7 +37,7 @@
             </van-field>
 
             <div style="margin: 16px">
-            <div class="link-register">立即注册</div>
+            <div class="link-register" @click="LoginToRegister">立即注册</div>
             <van-button round block type="primary" native-type="submit">
                 登录
             </van-button>
@@ -96,11 +96,16 @@ export default {
             username:'',
             password:'',
             verify:'',
-            type:'register',
+            type:'login',
         })
 
+        const LoginToRegister = ()=>{
+            state.type='register'
+        }
+
         return{
-            ...toRefs(state)
+            ...toRefs(state),
+            LoginToRegister,
         }
     },
     
