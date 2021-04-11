@@ -1,15 +1,15 @@
 <template>
     <div class="login">
         <!-- header -->
-        <s-header :name="type==='login'?'登录':'注册'"></s-header>
+        <s-header :name="type === 'login' ? '登录' : '注册'"></s-header>
         <img
         class="logo"
         src="//s.yezgea02.com/1604045825972/newbee-mall-vue3-app-logo.png"
         alt=""
         />
         <!-- 登录 -->
-        <div v-if="type==='login'" class="login login-body">
-        <van-form>
+        <div v-if="type === 'login'" class="login login-body">
+        <van-form @submit="onSubmit">
             <van-field
             v-model="username"
             name="用户名"
@@ -32,12 +32,12 @@
             placeholder="请输入验证码"
             >
             <template #button>
-                <vue-img-verify />
+                <vue-img-verify ref="verifyRef" />
             </template>
             </van-field>
 
             <div style="margin: 16px">
-            <div class="link-register" @click="LoginToRegister">立即注册</div>
+            <div class="link-register" @click="toggle('register')">立即注册</div>
             <van-button round block type="primary" native-type="submit">
                 登录
             </van-button>
@@ -47,7 +47,7 @@
 
         <!-- 注册 -->
         <div v-else class="login-body register">
-        <van-form>
+        <van-form @submit="onSubmit">
             <van-field
             v-model="username1"
             name="用户名"
@@ -70,12 +70,12 @@
             placeholder="请输入验证码"
             >
             <template #button>
-                <vue-img-verify />
+                <vue-img-verify ref="verifyRef" />
             </template>
             </van-field>
 
             <div style="margin: 16px">
-            <div class="link-register">已有登录账号</div>
+            <div class="link-register" @click="toggle('login')">已有登录账号</div>
             <van-button round block type="primary" native-type="submit">
                 注册
             </van-button>
@@ -86,101 +86,135 @@
 </template>
 
 <script>
-import sHeader from '@/components/SimpleHeader.vue'
-import {reactive,toRefs} from 'vue'
-import VueImgVerify from '../components/VueImgVerify.vue'
+import sHeader from "@/components/SimpleHeader.vue";
+import vueImgVerify from "@/components/VueImgVerify";
+import { reactive, toRefs,ref } from "vue";
+import { register ,login} from '@/service/user.js'
+import { Toast } from 'vant'
+import md5 from 'js-md5'
 
 export default {
-    setup(){
-        const state=reactive({
-            username:'',
-            password:'',
-            verify:'',
-            type:'login',
-        })
+    setup() {
+        const verifyRef = ref(null)
 
-        const LoginToRegister = ()=>{
-            state.type='register'
+        const state = reactive({
+        username: "",
+        password: "",
+        username1: "",
+        password1: "",
+        verify: "",
+        type: 'login'
+        });
+
+        const toggle = (v) => {
+        state.type = v
         }
 
-        return{
+        // 登录注册
+        const onSubmit = async () => {
+            console.log(verifyRef.value.imgCode); // 通过ref.value可以取到组件内setup函数的返回值
+            if (state.verify.toLowerCase() !== verifyRef.value.imgCode.toLowerCase()) {
+                Toast.fail('验证码有误')
+                return
+            }
+
+            if (state.type == 'login') {
+                
+                const { data } = await login({
+                'loginName': state.username,
+                'passwordMd5': md5(state.password)
+                })
+                console.log(data);
+            } else {
+                await register({
+                'loginName': state.username1,
+                'password': state.password1
+                })
+                Toast.success('注册成功');
+                state.type = 'login'
+            }
+        }
+
+
+        return {
             ...toRefs(state),
-            LoginToRegister,
-        }
+            toggle,
+            onSubmit,
+            verifyRef
+        };
     },
-    
-    components:{
+    components: {
         sHeader,
-        VueImgVerify,
-    }
-}
+        vueImgVerify,
+    },
+};
 </script>
 
 <style lang="less">
-    .login {
-        .logo {
+.login {
+    .logo {
         width: 120px;
         height: 120px;
         display: block;
         margin: 80px auto 20px;
-        }
-        .login-body {
+    }
+    .login-body {
         padding: 0 20px;
-        }
-        .login {
+    }
+    .login {
         .link-register {
-            font-size: 14px;
-            margin-bottom: 20px;
-            color: #1989fa;
-            display: inline-block;
+        font-size: 14px;
+        margin-bottom: 20px;
+        color: #1989fa;
+        display: inline-block;
         }
-        }
-        .register {
+    }
+    .register {
         .link-login {
-            font-size: 14px;
-            margin-bottom: 20px;
-            color: #1989fa;
-            display: inline-block;
+        font-size: 14px;
+        margin-bottom: 20px;
+        color: #1989fa;
+        display: inline-block;
         }
-        }
-        .verify-bar-area {
+    }
+    .verify-bar-area {
         margin-top: 24px;
         .verify-left-bar {
-            border-color: #1baeae;
+        border-color: #1baeae;
         }
         .verify-move-block {
-            background-color: #1baeae;
-            color: #fff;
+        background-color: #1baeae;
+        color: #fff;
         }
-        }
-        .verify {
-        >div {
-            width: 100%;
+    }
+    .verify {
+        > div {
+        width: 100%;
         }
         display: flex;
         justify-content: center;
         .cerify-code-panel {
-            margin-top: 16px;
+        margin-top: 16px;
         }
         .verify-code {
-            width: 40%!important;
-            float: left!important;
+        width: 40% !important;
+        float: left !important;
         }
         .verify-code-area {
-            float: left!important;
-            width: 54%!important;
-            margin-left: 14px!important;
-            .varify-input-code {
+        float: left !important;
+        width: 54% !important;
+        margin-left: 14px !important;
+        .varify-input-code {
             width: 90px;
-            height: 38px!important;
+            height: 38px !important;
             border: 1px solid #e9e9e9;
             padding-left: 10px;
             font-size: 16px;
-            }
-            .verify-change-area {
+        }
+        .verify-change-area {
             line-height: 44px;
-            }
         }
         }
     }
+}
 </style>

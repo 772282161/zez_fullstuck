@@ -1,13 +1,10 @@
-import { createRouter, createWebHistory } from 'vue-router' // @代表src目录 绝对路径
-// import Login from '@/views/Login' //路由懒加载
-
-
+import { createRouter, createWebHistory } from 'vue-router'
 
 const routes = [
   {
-    path:'/login',
-    name:'login',
-    component:()=>import('@/views/Login.vue')
+    path: '/login',
+    name: 'login',
+    component: () => import('@/views/Login.vue')
   }
 ]
 
