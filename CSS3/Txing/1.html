@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .box{
+            /* 实现方法，利用盒子边框的大小对边框产生折叠，就形成了梯形，
+            比如一个盒子四条边都设一个宽度，那么会形成四条边都会形成梯形，中间的内容则是正方形，将其他区域透明就得到梯形 */
+            border-bottom: 100px solid red;
+            /* transparent 透明  */
+            border-left: 50px solid transparent;
+            border-right: 50px solid transparent;
+            width: 0px;
+        }
+    </style>
+</head>
+<body>
+    <div class="box">
+
+    </div>
+</body>
+</html>
