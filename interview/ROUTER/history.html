@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <ul class="list">
+        <li class="list-item"><a href="/home">HOME</a></li>
+        <li class="list-item"><a href="/about">ABOUT</a></li>
+    </ul>
+    <div id="routerView"></div>
+
+
+    <script>
+        window.addEventListener('popstate',onPopState)
+        var linkList = document.querySelectorAll('.list .list-item a[href]')
+        // 返回的类数组
+        linkList.forEach((el)=>{
+            // console.log(el)
+            el.addEventListener('click',(e)=>{
+                //阻止默认事件 两种方法 有什么区别
+                e.preventDefault()
+                //dom结构调用getAttribute方法获取属性
+                history.pushState(null,' ',el.getAttribute('href'))
+                onPopState()
+            })
+        })
+        // console.log(linkList)
+        function onPopState(){
+            // console.log(location.pathname)
+        }
+    </script>
+</body>
+</html>

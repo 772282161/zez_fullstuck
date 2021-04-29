@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <ul>
+        <li><a href="#/home">HOME</a></li>
+        <li><a href="#/about">ABOUT</a></li>
+    </ul>
+    <div id="routerView"></div>
+
+    <script>
+        window.addEventListener('hashchange', onHashChange)
+        var routerView = document.getElementById('routerView')
+        // 页面初次渲染
+        window.addEventListener('DOMContentLoaded', onHashChange)
+
+        //路由变化时，根据路由的变化渲染对应的UI
+        function onHashChange() {
+            //获取哈希值
+            console.log(location.hash)
+            switch (location.hash) {
+                case '#/home':
+                    routerView.innerHTML = 'Home'
+                    return
+                case '#/about':
+                    routerView.innerHTML = 'About'
+                    return
+                default:
+                    return
+            }
+        }
+    </script>
+</body>
+
+</html>
