@@ -1,10 +1,10 @@
 import React from 'react'
 import ReactDOM from 'react-dom'
 import thunk from 'redux-thunk'
-import {Provider} from 'react-redux'
+import { Provider } from 'react-redux'
 import App from './App'
-import { createStore, applyMiddleware,compose } from 'redux'
-import { counter} from './index.redux'
+import { createStore, applyMiddleware, compose } from 'redux'
+import { counter } from './index.redux'
 
 
 const store = createStore(
@@ -16,11 +16,11 @@ const store = createStore(
 )
 
 
-  ReactDOM.render(
-    (<Provider store={store}>
-      <App />,
-    </Provider>),
-    
-    document.getElementById('root')
-  )
+ReactDOM.render(
+  (<Provider store={store}>
+    <App />,
+  </Provider>),
+
+  document.getElementById('root')
+)
 

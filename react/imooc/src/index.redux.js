@@ -20,11 +20,11 @@ export function addGun() {
   return { type: ADD_GUN }
 }
 
-export function addGunAsync(){
-  return dispatch=>{
-    setTimeout(()=>{
+export function addGunAsync() {
+  return dispatch => {
+    setTimeout(() => {
       dispatch(addGun())
-    },2000)
+    }, 2000)
   }
 }
 
