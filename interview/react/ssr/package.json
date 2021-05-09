@@ -1,0 +1,43 @@
+{
+  "name": "ssr",
+  "version": "1.0.0",
+  "description": "- 为什么在SPA之后还需要SSR   现在是SSR+SPA混合使用\r   SPA 的好处是显示后，切换页面更快，不用重新刷新页面\r     缺点：SEO极差(只挂载了一个root节点，)，首页时间加载过长(因为单页应用的内容都打包在js文件内，需要运行JS文件，)\r     首页内容静态化 首页服务器端渲染\r   Server Side Rendering  SSR 服务器端渲染  ->  VirtualDOM  React/Vue\r   single page web application SPA 单页应用\r   跨平台的能力\r   1. -> html  传输出去，解决SEO问题(SEO 搜索引擎优化)\r   2.",
+  "main": "index.js",
+  "scripts": {
+    "dev": "npm-run-all --parallel dev:**",
+    "dev:build:server": "webpack --config webpack.server.js --watch",
+    "dev:server": "nodemon --watch build --exec node \"./build/bundle.js\""
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "@babel/core": "^7.4.5",
+    "@babel/preset-env": "^7.4.5",
+    "@babel/preset-react": "^7.0.0",
+    "@babel/preset-stage-0": "^7.0.0",
+    "axios": "^0.19.0",
+    "babel-loader": "^8.0.6",
+    "css-loader": "^3.0.0",
+    "express": "^4.17.1",
+    "express-http-proxy": "^1.5.1",
+    "npm-run-all": "^4.1.5",
+    "prerender": "^5.6.0",
+    "react": "^17.0.2",
+    "react-dom": "^16.8.6",
+    "react-helmet": "^5.2.1",
+    "react-redux": "^7.1.0",
+    "react-router-config": "^5.0.1",
+    "react-router-dom": "^5.0.1",
+    "redux": "^4.1.0",
+    "redux-thunk": "^2.3.0",
+    "style-loader": "^0.23.1",
+    "webpack": "^4.35.2",
+    "webpack-cli": "^3.3.5",
+    "webpack-merge": "^4.2.1",
+    "webpack-node-externals": "^1.7.2"
+  },
+  "devDependencies": {
+    "isomorphic-style-loader": "^5.1.0"
+  }
+}
