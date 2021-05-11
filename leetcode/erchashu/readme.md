@@ -13,13 +13,46 @@
 
 
 # 树的遍历顺序
+                    1
+                2       3
+            4     5   6
+          7   8
 
 ## 前序遍历
-
+12345678
+/**
+ * Definition for a binary tree node.
+ * function TreeNode(val, left, right) {
+ *     this.val = (val===undefined ? 0 : val)
+ *     this.left = (left===undefined ? null : left)
+ *     this.right = (right===undefined ? null : right)
+ * }
+ */
+/**
+ * @param {TreeNode} root
+ * @return {number[]}
+ */
+var preorderTraversal = function(root,lst) {
+    if(root==null) return []
+    let arr = []
+    let pre = (node,array)=>{
+        if(node == null) return
+    
+    let {left,right,val} = node
+    array.push(val)
+    pre(left,array)
+    pre(right,array)
+    }
+    pre(root,arr)
+    return arr
+};
+## 先序遍历
+根->左->右  1、2、4、7、8、5、3、6
 ## 中序遍历
-
+左->根->右  74825163
 ## 后序遍历
-
+左->右->根 78452631
 ## 深度优先遍历
 
 ## 广度优先遍历
+

@@ -74,3 +74,32 @@ mysql://root:123456@localhost:3306/student_db?max_connection=50
   Content-Type:响应体的数据类型
   Set-Cookie:设置Cookie
   Server:后端服务器名
+
+### Nginx 的负载均衡算法是什么
+  1. 轮询 
+     1. 每个请求平均的分配到每台服务器上，通过求余的方式
+  2. 权重
+     1. 每台机器的流量与权重成正比
+   
+### 正向代理和反向代理
+  1. 正向代理就是发送的请求通过代理直接到达目标服务器(指路人)
+  2. 反向代理就是请求统一被Nginx接收，然后Nginx吧请求发给后端服务器处理，得到响应后，再将响应返回给客户端(跑腿的)
+
+  反向代理的优点：
+    1. 为了隐藏服务器，不让服务器直接暴露在互联网上，保证一定的安全性
+    2. 可以作为静态资源的代理服务器，直接返回静态资源，动态资源再走后端
+   
+### 解决前端跨域问题
+  1. 前端不跨域，前后端用同一个域名，但是可以通过Nginx 配置根据path 转发到真正的接口服务器上。
+  2. JSONP 在HTML DOM中,Script标签是可以跨域访问服务器上的数据的.因此,可以指定script的src属性为跨域的url,基于script标签实现跨域.
+    script标签本身就可以访问其它域的资源，不受浏览器同源策略的限制，可以通过在页面动态创建script标签。
+
+    var script = document.createElement('script');  
+    script.src = "http://aa.xx.com/js/*.js";  
+    document.body.appendChild(script);  
+
+    这样通过动态创建script标签加载其它域的js文件，然后通过本页面调用加载后js文件的函数，这样做的缺陷是不能加载其它域的文档，只能是js文件，jsonp便是通过这种方式实现的，jsonp通过向其它域传入一个callback参数，通过其他域的后台将callback参数值和json串包装成javascript函数返回，因为是通过script标签发出的请求，浏览器会将返回来的字符串按照javascript进行解析执行，实现域与域的数据传输。
+    jquery中对jsonp的支持也是基于此方案。
+    例如:服务器返回的数据不能是单纯的如{“Name”:”hofmann”}字符串,我们是没有办法引用这个字符串的.所以,要求返回的值是var json={“Name”:”zhangsan”},或json({“Name”:”zhangsan”})
+  3. iframe实现跨域
+    基于iframe实现的跨域要求两个域具有aa.xx.com,bb.xx.com这种特点，也就是两个页面必须属于同一个顶级基础域（例如都是xxx.com，或是xxx.com.cn），使用同一协议（例如都是 http）和同一端口（例如都是80），这样在两个页面中同时添加document.domain，就可以实现父页面调用子页面的函数，
