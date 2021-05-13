@@ -1,4 +1,5 @@
 const express = require('express')
+const utils = require('utility')
 const Router = express.Router()
 const model = require('./model')
 const User = model.getModel('user')
@@ -6,6 +7,7 @@ const User = model.getModel('user')
 
 Router
   .get('/list', function (req, res) {
+    // User.remove({},function(e,d){})
     User
       .find({}, function (err, doc) {
         return res.json(doc)
@@ -18,7 +20,7 @@ Router.post('/register',function(req,res){
     if(doc){
       return res.json({code:1,msg:'用户名重复'})
     }
-    User.create({user,pwd,type},function(err,doc){
+    User.create({user,pwd:md5Pwd(pwd),type},function(err,doc){
       if(err){
         return res.json({code:1,msg:'后端出错了'})
       }
@@ -32,5 +34,11 @@ Router
     // 用户有没有cookie
     return res.json({ code: 1 })
   })
+
+function md5Pwd(pwd){
+  const salt = 'wocaonimade_siquanjia_wannimamaibide124#@^$^$@&```'
+  return utils.md5(utils.md5(pwd+salt))
+}
+
 
 module.exports = Router
