@@ -163,9 +163,82 @@ console.log('quickSort1 ', quickSort1(array2));
 
 
 
-堆排序
+### 堆排序
+堆是一个完全二叉树,完全二叉树:除了最后一层的节点个数都是满的，最后一层节点都靠左排列
+`
+const heapSort = array => {
+  console.time('堆排序耗时')
+  for(let i = Math.floor(array.length/2-1);i>=0;i--){
+    heapify(array,i,array.length)
+  }
+  for(let i = Math.floor(array.length-1);i>0;i--){
+    swap(array,0,i)
+    heapify(array,0,i)
+  }
+  console.timeEnd('堆排序耗时')
+  return array
+}
 
-基数排序
+const swap = (array,i,j) => {
+  let temp = array[i],
+      array[i] = array[j]
+      array[j] = temp
+}
+
+
+  const heapify = (array,i,length ) => {
+    let temp =array[i]
+    for (let j =2*i + 1;j < length; j = 2*j + 1){
+      temp = array[i]
+      if(j+1 < length && array[j] < array[j+1]){
+        j++
+      }
+      if(temp < array[j]){
+        swap(array,i,j)
+        i = j
+      } else {
+        break
+      }
+    }
+  }
+
+
+`
+
+
+
+
+### 基数排序
+MSD:又高位为基底，先按K1排序分组，同一组中记录，关键码k1相等，再对各组k2排序分成子组，之后，对后面的关键码继续这样的排序分组，直到按最次为关键码kd对各子组排序后，再将各组连接起来，便得到一个有序序列。MSD方式适用于位数多的序列
+LSD：由低位为基底 先从kd开始排序，在对kd-1进行排序，一次重复，直到对k1排序后便得到一个有序序列，LSD方式适用于位数少的序列
+
+LSD：
+const radixSort = (array,max) => {
+  console.time('计数排序耗时')
+  const buckets = []
+  let unit = 10,base = 1
+  for (let i = 0; i < max; i++,base*= 10,unit *= 10){
+    for(let j = 0; j < array.length; j++ ){
+      let index = ~~((array[j] % unit)/base)
+      if(buckets[index] == null){
+        buckets[index] = []
+      }
+      buckets[index].push(array[j])
+    }
+    let pos = 0, value
+    for (let j =0,length = buckets.length;j< length;j++){
+      if(buckets[j]!=null){
+        while((value = buckets[j].shift()) !== null){
+          array[pos++] = value
+        }
+      }
+    }
+  }
+  console.timeEnd('计数排序耗时')
+  return array
+}
+
+
 ### 计数排序
 `
 const countingSort2 = (arr, maxValue) => {
@@ -252,7 +325,7 @@ const bucketSort = (array, bucketSize) => {
   return array;
 };
 
-// 快速排序
+### 快速排序
 const quickSort = (arr, left, right) => {
 	let len = arr.length,
 		partitionIndex;
