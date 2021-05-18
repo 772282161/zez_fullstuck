@@ -1,0 +1,323 @@
+<!DOCTYPE html>
+
+<html lang="en">
+
+<head>
+
+      
+  <meta charset="UTF-8">
+
+      <title>Title</title>
+
+      <style>
+    .effect-box {
+
+      position: relative;
+
+      display: inline-block;
+
+      overflow: hidden;
+
+      width: 250px;
+
+      height: 158px;
+
+      background: rgba(53, 172, 197, 1);
+
+      cursor: pointer
+    }
+
+
+
+    .effect-box img {
+
+      display: block;
+
+      width: 100%;
+
+      height: 100%;
+
+      opacity: .7;
+
+      -webkit-transition: opacity .35s;
+
+      transition: opacity .35s
+    }
+
+
+
+    .effect-box:hover img {
+
+      opacity: .4
+    }
+
+
+
+    .effect-box .border-line2 {
+
+      position: absolute;
+
+      top: 0;
+
+      left: 0;
+
+      width: 100%;
+
+      height: 100%;
+
+      box-sizing: border-box;
+
+      padding: 2em;
+
+      font-size: 1.25em;
+
+      color: #fff;
+
+      text-transform: uppercase;
+
+      -webkit-backface-visibility: hidden;
+
+      backface-visibility: hidden
+    }
+
+    .effect-box .border-line2::after,
+
+    .effect-box .border-line2::before {
+
+      position: absolute;
+
+      top: 30px;
+
+      right: 30px;
+
+      bottom: 30px;
+
+      left: 30px;
+
+      content: '';
+
+      opacity: 0;
+
+      pointer-events: none;
+
+      -webkit-transition: opacity .35s, -webkit-transform .35s;
+
+      transition: opacity .35s, transform .35s
+    }
+
+
+
+    .effect-box .border-line2::before {
+
+      border-top: 1px solid #fff;
+
+      border-bottom: 1px solid #fff;
+
+      -webkit-transform: scale(0, 1);
+
+      transform: scale(0, 1)
+    }
+
+    .effect-box .border-line2::after {
+
+      border-right: 1px solid #fff;
+
+      border-left: 1px solid #fff;
+
+      -webkit-transform: scale(1, 0);
+
+      transform: scale(1, 0)
+    }
+
+    .effect-box:hover .border-line2::after,
+
+    .effect-box:hover .border-line2::before {
+
+      opacity: 1;
+
+      -webkit-transform: scale(1);
+
+      transform: scale(1)
+    }
+
+    .effect-box .border-line2 p {
+
+      padding: 4px 10px;
+
+      margin: 0;
+
+      font-size: 16px;
+
+      line-height: 1.0;
+
+      text-align: center;
+
+      color: #fff;
+
+      letter-spacing: 1px;
+
+      opacity: 0;
+
+      -webkit-transition: opacity .35s, -webkit-transform .35s;
+
+      transition: opacity .35s, transform .35s;
+
+      -webkit-transform: translate3d(0, 20px, 0);
+
+      transform: translate3d(0, 20px, 0)
+    }
+
+    .effect-box:hover .border-line2 p {
+
+      opacity: 1;
+
+      -webkit-transform: translate3d(0, 0, 0);
+
+      transform: translate3d(0, 0, 0)
+    }
+  </style>
+
+      <style>
+    .myeff {
+
+      width: 300px;
+
+      height: 300px;
+
+      background-color: #367dff;
+
+    }
+
+    .show {
+
+      width: 300px;
+
+      height: 280px;
+
+      display: inline-block;
+
+      position: absolute;
+
+      margin-top: 20px;
+
+      backface-visibility: hidden;
+
+      box-sizing: border-box;
+
+    }
+
+    .show::before,
+    .show::after {
+
+      width: 200px;
+
+      height: 200px;
+
+      position: absolute;
+
+      content: "";
+
+      top: 20px;
+
+      left: 50px;
+
+      transition: opacity .35s, transform .35s;
+
+    }
+
+    .show::before {
+
+      border-top: 1px solid white;
+
+      border-bottom: 1px solid white;
+
+      transform: scale(0, 1);
+
+    }
+
+    .show::after {
+
+      border-left: 1px solid white;
+
+      border-right: 1px solid white;
+
+      transform: scale(1, 0);
+
+    }
+
+
+
+    .myeff:hover .show::after,
+    .myeff:hover .show::before {
+
+      transform: scale(1);
+
+    }
+
+    .show p {
+
+      height: 40px;
+
+      width: 100%;
+
+      font-size: 22px;
+
+      color: white;
+
+      text-align: center;
+
+      opacity: 0;
+
+      transition: opacity 0.35s, transform 0.35s;
+
+      transform: translate(0, 20px);
+
+
+
+    }
+
+    .myeff:hover .show p {
+
+      transform: translate(0, 0);
+
+    }
+  </style>
+
+</head>
+
+<body>
+
+      <div class="effect-box">
+
+            <div class="border-line2">
+
+                  <p> 319 </p>
+
+                  <p> 布局和界面</p>
+
+                  <p>Read More</p>
+
+              </div>
+
+        </div>
+
+      <div class="myeff">
+
+                <div class="show">
+
+                      <p>402</p>
+
+                      <p>布局与界面</p>
+
+                      <p>readmore</p>
+
+                  </div>
+
+            </div>
+
+
+
+</body>
+
+</html>
+ 
