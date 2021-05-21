@@ -12,7 +12,7 @@ import Logo from '../../component/logo/logo'
   state => state.user,
   { regisger }
 )
-class register extends React.Component {
+class Register extends React.Component {
   constructor(props) {
     super(props)
     this.state = {
@@ -28,7 +28,6 @@ class register extends React.Component {
     this.setState({
       [key]: val
     })
-
   }
 
   handleRegister() {
@@ -74,4 +73,4 @@ class register extends React.Component {
   }
 }
 
-export default register
+export default Register

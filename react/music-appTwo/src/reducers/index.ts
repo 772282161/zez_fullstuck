@@ -1,6 +1,6 @@
 import { combineReducers } from 'redux'
-import song from './song'
+import counter from './counter'
 
 export default combineReducers({
-  song
+  counter
 })
