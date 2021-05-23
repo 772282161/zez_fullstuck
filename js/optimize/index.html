@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DOM操作测试</title>
+    <script>
+        //  http ->  file  www.taobao.com
+        //request  responce  status:200  html  text/html  解析HTML   DOMContentLoaded 
+        //1.尽快把静态页面显示   img src  onload 
+        // js 阻塞  DOM 树 未生成  
+        // let oContainer = document.getElementById('container');
+        // console.log(oContainer); 
+    </script>
+</head>
+<body>
+    <div id="container"></div>
+    <script>
+        // why  怎么优化
+        //1. 查找元素可以提出来
+
+        // document.addEventListener('DOMContentLoaded',()=>{
+        //     //dom + css  结合完成了
+        //     console.log('domLoaded');
+        // },false);
+        // // DOM 树，ready 了；
+        // window.addEventListener('load',()=>{
+        //     // 各种资源加载完了  js  img sec ...
+        //     console.log('loaded');
+        // },false);
+        let oContainer = document.getElementById('container');// read
+        let  content = '';
+        for(var count = 0;count<10000;count++){
+            content +='<span>王总不给钱</span>';//JS java c++
+        } 
+        oContainer
+            .innerHTML += content;
+    </script>
+</body>
+</html>

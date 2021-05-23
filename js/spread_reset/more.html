@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <div class="people">
+        <p>wangzong</p>
+        <p>piaochang</p>
+        <p>bugeiqian</p>
+    </div>
+
+    <script>
+        //不是一个真正的数组，它是一个伪数组
+        //JS 一切皆对象
+        // 把NodeList 假数组变成真数组
+        const people = Array.from(document.querySelectorAll('.people p'));
+        // const arr = [];
+        // people.forEach(person =>{
+        //     arr.push(person)
+        // })
+        const names = people.map(person => person.textContent);
+        console.log(names);
+
+        const deepDish = {
+            pizzaName:'Deep Dish',
+            size:'Medium',
+            ingredients:['Marinara','Italian Sausage','Dough','Cheese'],
+        }
+        const shoopingList = ['Milk','Flour',...deepDish.ingredients];
+        console.log(shoopingList);
+
+        const name=['Wes','Bos']
+        function SayHi(first,last){
+            alert(`Hey there ${first} ${last}`)
+        }
+        // reset
+        SayHi(...name);
+    </script>
+</body>
+</html>
