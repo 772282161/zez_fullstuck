@@ -2,7 +2,7 @@ import React from 'react'
 import ReactDOM from 'react-dom'
 import thunk from 'redux-thunk'
 import { Provider } from 'react-redux'
-import { BrowserRouter, Route} from 'react-router-dom'
+import { BrowserRouter, Route, Switch } from 'react-router-dom'
 import { createStore, applyMiddleware, compose } from 'redux'
 
 import reducer from './reducer'
@@ -12,6 +12,7 @@ import AuthRoute from './component/authroute/authroute'
 import './config'
 import './index.css'
 import 'antd-mobile/dist/antd-mobile.css'
+import BossInfo from './container/bossinfo/bossinfo'
 
 const store = createStore(
   reducer,
@@ -21,7 +22,7 @@ const store = createStore(
   )
 )
 
-function Boss(){
+function Boss() {
   return <h2>Boss 页面</h2>
 }
 
@@ -29,10 +30,13 @@ ReactDOM.render(
   (<Provider store={store}>
     <BrowserRouter>
       <div>
-        <AuthRoute></AuthRoute>
-        <Route path='/boss' component={Boss}></Route>
-        <Route path="/login" component={Login}></Route>
-        <Route path='/register' component={Register}></Route>
+      <AuthRoute></AuthRoute>
+        <Switch>
+          <Route path='/bossinfo' component={BossInfo}></Route>
+          <Route path='/boss' component={Boss} />
+          <Route path="/login" component={Login}></Route>
+          <Route path='/register' component={Register}></Route>
+        </Switch>
       </div>
     </BrowserRouter>
   </Provider>),
