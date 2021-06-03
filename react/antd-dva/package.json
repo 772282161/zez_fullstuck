@@ -1,0 +1,21 @@
+{
+  "name": "antd-dva",
+  "version": "1.0.0",
+  "description": "- umi? 为什么用umi \r   - react + react-route + redux  \r   - umi 以路由为基础，支持类next.js的约定式路由\r   antd UI组件库\r   egg.js 企业级 node开发",
+  "main": "index.js",
+  "scripts": {
+    "dev": "umi dev",
+    "build": "umi build"
+  },
+  "devDependencies": {
+    "@umijs/preset-react": "^1.8.10",
+    "umi": "^3.4.14"
+  },
+  "dependencies": {
+    "@ant-design/icons": "^4.6.2",
+    "antd": "^4.16.1"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC"
+}
