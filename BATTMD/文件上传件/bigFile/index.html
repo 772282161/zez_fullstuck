@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <input type="file" id="f1"><br/>
+  <button id="btn-submit">上传</button>
+
+  <script>
+    function submitUpload(){
+      // 切割文件
+      let chunkSize = 2 * 1024 *1024
+      //拿到文件
+      let file =document.getElementById('f1').files[0] 
+      // 做标记，时间戳
+      let token = (+ new Date())
+      let name = file.name,chunkCount = 0,sendChunkCount = 0,chunks=[]
+
+      // 拆文件
+      if (file.size>chunkSize) {
+        let start = 0,end = 0
+        while(true){
+          end += chunkSize
+          let blob = file.slice(start,end)
+          start += chunkSize
+
+          if(!blob.size){
+            // 截不到东西
+            break;
+          }
+          chunks.push(blob) // 保存片段
+        }
+      }else{
+        chunks.push(file.slice(0))
+      }
+
+      chunkCount = chunks.length
+
+      for(let i=0;i<chunkCount;i++){
+        let fd = new FormData()
+        fd.append('token',token)
+        fd.append('f1',chunks[i])
+        fd.append('index',i)
+        xhrSend(fd,function(){
+          sendChunkCount += 1
+          if (sendChunkCount === chunkCount) {
+            //传完了,该发送合并请求
+            let formD = new FormData()
+            formD.append('type','merge')
+            formD.append('token',token)
+            formD.append('chunkCount',chunkCount)
+            formD.append('filename',name)
+            xhrSend(formD)
+
+          }
+        })
+      }
+
+      console.log(123);
+
+    
+    }
+    function xhrSend(fd,cb) {
+      let xhr = new XMLHttpRequest()
+      xhr.open('POST', 'http://localhost:3000', true)
+      xhr.onreadystatechange = function() {
+        if (xhr.readyState == 4) {
+          let obj = JSON.parse(xhr.responseText)
+          console.log(obj);
+          cb && cb()
+        }
+      }
+      xhr.send(fd)
+    }
+
+    document.getElementById('btn-submit').addEventListener('click', submitUpload)
+  </script>
+</body>
+</html>

@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <h1>早期的文件上传方式 -- 单文件上传</h1>
+  <form action="http://localhost:3000" enctype="multipart/form-data" method="POST">
+    <label for="f1"></label>
+    <input type="file" name="f1">
+    <p>
+      标题：
+      <input type="text" name="title">
+    </p>
+    <button type="submit">上传</button>
+  </form>
+</body>
+</html>

@@ -1,0 +1,11 @@
+@import '~antd/dist/antd.css';
+
+.App {
+  background-color: rgba(0, 0, 0, 0.08) !important;
+}
+
+.page-content{
+  width: 1230px;
+  margin: 0 auto;
+  min-height: 75vh;
+}

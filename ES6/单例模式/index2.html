@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <button id="open">打开弹框</button>
+  <button id="close">关闭弹框</button>
+
+  <script>
+    const Model = (function() {
+      let model = null
+      return function() {
+        if (!model){
+          model = document.createElement('div')
+          model.innerHTML = '这是唯一弹窗'
+          model.id = 'model'
+          model.style.display = 'none'
+          document.body.appendChild(model)
+        }
+        return model
+      }
+    })()
+
+    document.getElementById('open').addEventListener('click',())
+  </script>
+</body>
+</html>

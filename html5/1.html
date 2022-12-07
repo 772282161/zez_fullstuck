@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <script>
+      var combine = function (n, k) {
+        const combinations = [];
+        for (let i = 1; i <= n; i++) {
+          combinations.push(i);
+        }
+        const result = [];
+        const path = [];
+        function backtrack(arr, path, result) {
+          if (path.length === k) {
+            result.push(path.concat());
+            return;
+          }
+          for (let i = 0; i < arr.length; i++) {
+            path.push(arr[i]);
+            backtrack(arr.slice(i + 1), path, result);
+            path.pop();
+          }
+        }
+        backtrack(combinations, path, result);
+        return result;
+      };
+      console.log(combine(3, 2));
+    </script>
+  </body>
+</html>

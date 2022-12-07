@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>断点续传</title>
+</head>
+
+<body>
+  <input type="file" id="f1">
+  <button id="btn-submit">上传</button>
+
+  <script>
+    let saveChunkKey = ''
+
+    function submitUpload() {
+      // 切割文件
+      let chunkSize = 2 * 1024 * 1024  // 2M
+      // 拿到文件
+      let file = document.getElementById('f1').files[0]
+      // 打标记，时间戳
+      let token = file.name
+      let name = file.name, chunkCount = 0, sendChunkCount = 0, chunks = [];
+      saveChunkKey = file.name
+      // 拆文件
+      if (file.size > chunkSize) {
+        let start = 0, end = 0
+        while (true) {
+          end += chunkSize
+          let blob = file.slice(start, end)
+          start += chunkSize
+
+          if (!blob.size) { // 截不到东西
+            break;
+          }
+          chunks.push(blob) // 保存片段
+        }
+      } else {
+        chunks.push(file.slice(0))
+      }
+
+      chunkCount = chunks.length
+
+      let uploadInfo = getUploadedFromStorage() // +++
+
+      for (let i = 0; i < chunkCount; i++) {
+        if (uploadInfo[i]) {
+          // 已经上传过了
+          continue
+        }
+        let fd = new FormData()
+        fd.append('token', token)
+        fd.append('f1', chunks[i])
+        fd.append('index', i);
+
+        (function (index) {
+          xhrSend(fd, function () {
+            sendChunkCount += 1
+            // 将发送成功的片段保存在本地
+            setUploadedToStorage(index)
+            if (sendChunkCount === chunkCount) { // 传完了,该发送合并请求
+              let formD = new FormData()
+              formD.append('type', 'merge')
+              formD.append('token', token)
+              formD.append('chunkCount', chunkCount)
+              formD.append('filename', name)
+              xhrSend(formD)
+            }
+          })
+        })(i)
+      }
+
+      console.log(file.size, chunks);
+    }
+
+    function xhrSend(fd, cb) {
+      let xhr = new XMLHttpRequest()
+      xhr.open('POST', 'http://localhost:3000', true)
+      xhr.onreadystatechange = function () {
+        if (xhr.readyState == 4) {
+          let obj = JSON.parse(xhr.responseText)
+          console.log(obj);
+          cb && cb()
+        }
+      }
+      xhr.send(fd)
+    }
+
+    //获得本地缓存的数据
+    function getUploadedFromStorage() {
+      return JSON.parse(localStorage.getItem(saveChunkKey) || "{}");
+    }
+
+    //写入缓存
+    function setUploadedToStorage(index) {
+      var obj = getUploadedFromStorage();
+      obj[index] = true;
+      localStorage.setItem(saveChunkKey, JSON.stringify(obj));
+    }
+
+    document.getElementById('btn-submit').addEventListener('click', submitUpload)
+  </script>
+</body>
+
+</html>
